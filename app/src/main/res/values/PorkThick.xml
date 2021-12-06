@@ -1,0 +1,53 @@
+<resources>
+    <string-array name="PorkThick" >
+
+        <item>.50 inch / 13 mm</item>
+        <item>1.00 inch / 25 mm</item>
+        <item>1.50 inch / 38 mm</item>
+        <item>2.00 inch / 51 mm</item>
+        <item>2.50 inch / 63 mm</item>
+        <item>3.00 inch / 76 mm</item>
+    </string-array>
+
+    <string-array name = "PorkTime1" >
+
+        <item>Medium Rare </item>
+        <item>Medium </item>
+        <item>Well </item>
+    </string-array>
+
+    <string-array name = "PorkTime2" >
+
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "PorkTime3" >
+
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "PorkTime4" >
+
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "PorkTime5" >
+
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "PorkTime6" >
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Well </item>
+    </string-array>
+
+</resources>

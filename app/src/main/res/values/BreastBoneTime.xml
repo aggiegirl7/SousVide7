@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name="BreastBoneTime" >
+            <item>Lowest Time/ Juicy</item>
+            <item>Medium Time/ Medium Cook</item>
+            <item>Highest Time/ Thoroughly Cook</item>
+        </string-array>
+
+
+</resources>

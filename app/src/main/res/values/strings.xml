@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SousVide</string>
+    <string name="get_started">Get Started!</string>
+    <string name="todo">TODO</string>
+    <string name="welcome_to_our_sous_vide">Welcome to our Sous Vide:</string>
+    <string name="group_59">Group 59</string>
+</resources>

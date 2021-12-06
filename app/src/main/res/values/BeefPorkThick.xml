@@ -1,0 +1,61 @@
+
+<resources>
+    <string-array name="BeefPorkThick" >
+
+        <item>.50 inch / 13 mm</item>
+        <item>1.00 inch / 25 mm</item>
+        <item>1.50 inch / 38 mm</item>
+        <item>2.00 inch / 51 mm</item>
+        <item>2.50 inch / 63 mm</item>
+        <item>3.00 inch / 76 mm</item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime1" >
+        <item>Rare</item>
+        <item>Medium Rare </item>
+        <item>Medium </item>
+        <item>Medium Well </item>
+        <item>Well </item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime2" >
+        <item> Rare</item>
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Medium Well </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime3" >
+        <item> Rare</item>
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Medium Well </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime4" >
+        <item> Rare</item>
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Medium Well </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime5" >
+        <item> Rare</item>
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Medium Well </item>
+        <item> Well </item>
+    </string-array>
+
+    <string-array name = "BeefPorkTime6" >
+        <item> Rare</item>
+        <item> Medium Rare </item>
+        <item> Medium </item>
+        <item> Medium Well </item>
+        <item> Well </item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="DuckBreastThick" >
+        <item>.50 inch / 13 mm</item>
+        <item>1.00 inch / 25 mm</item>
+        <item>1.50 inch / 38 mm</item>
+        <item>2.00 inch / 51 mm</item>
+        <item>2.50 inch / 63 mm</item>
+        <item>3.00 inch / 76 mm</item>
+    </string-array>
+
+    <string-array name = "DuckTime1" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+
+    <string-array name = "DuckTime2" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+
+    <string-array name = "DuckTime3" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+
+    <string-array name = "DuckTime4" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+
+    <string-array name = "DuckTime5" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+
+    <string-array name = "DuckTime6" >
+        <item>Lowest Time/ Juicy</item>
+        <item>Medium Time/ Medium Cook</item>
+        <item>Highest Time/ Thorough Cook</item>
+    </string-array>
+</resources>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TypeChickenCook"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="40dp"
+        tools:context=".FoodChooser">
+
+        <!--Egg image button -->
+        <!--Egg Button-->
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="1459dp"
+            android:gravity="center"
+            android:text="What kind of poultry would you like to cook?"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+
+
+            android:id="@+id/BoneInBreastPic"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/boneinbreast" />
+
+        <Button
+            android:id="@+id/BoneInBreastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="256dp"
+            android:text="Chicken Breast- Bone In"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/BonelessBreastPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="393dp"
+            android:layout_marginBottom="30dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/BonelessBreastButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bonelessbreast" />
+
+        <Button
+            android:id="@+id/BonelessBreastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:text="Chicken Breast - Boneless"
+            app:layout_constraintBottom_toTopOf="@+id/BoneInThighPic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BonelessBreastPic" />
+
+        <ImageButton
+            android:id="@+id/BoneInThighPic"
+            android:layout_width="109dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="32dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/BoneInThighButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BonelessBreastButton"
+            app:srcCompat="@drawable/boneinthigh" />
+
+        <Button
+            android:id="@+id/BoneInThighButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="52dp"
+            android:text="Chicken Thigh -  Bone In"
+            app:layout_constraintBottom_toTopOf="@+id/BonelessThighPic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BoneInThighPic" />
+
+        <ImageButton
+            android:id="@+id/BonelessThighPic"
+            android:layout_width="138dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="30dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/BonelessThighButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BoneInThighButton"
+            app:srcCompat="@drawable/bonelessthigh" />
+
+        <Button
+            android:id="@+id/BonelessThighButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="79dp"
+            android:text="Chicken Thigh -  Boneless"
+            app:layout_constraintBottom_toTopOf="@+id/ChickenLegPic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BonelessThighPic" />
+
+        <ImageButton
+            android:id="@+id/ChickenLegPic"
+            android:layout_width="161dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="26dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/ChickenLegButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BonelessThighButton"
+            app:srcCompat="@drawable/chickenleg" />
+
+        <Button
+            android:id="@+id/ChickenLegButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginBottom="88dp"
+            android:text="Chicken Leg"
+            app:layout_constraintBottom_toTopOf="@+id/DuckBreastPic"
+            app:layout_constraintStart_toStartOf="@+id/ChickenLegPic"
+            app:layout_constraintTop_toBottomOf="@+id/ChickenLegPic" />
+
+        <ImageButton
+            android:id="@+id/DuckBreastPic"
+            android:layout_width="185dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="33dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/DuckBreastButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ChickenLegButton"
+            app:srcCompat="@drawable/duckbreast" />
+
+        <Button
+            android:id="@+id/DuckBreastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="Duck Breast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DuckBreastPic" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>

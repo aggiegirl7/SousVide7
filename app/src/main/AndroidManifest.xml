@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sousvide">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SousVide">
+        <activity
+            android:name=".PorkTenderloin"
+            android:exported="false" />
+        <activity
+            android:name=".Tuna"
+            android:exported="false" />
+        <activity
+            android:name=".Salmon"
+            android:exported="false" />
+        <activity
+            android:name=".Tilapia"
+            android:exported="false" />
+        <activity
+            android:name=".GeneralFish"
+            android:exported="false" />
+        <activity
+            android:name=".TypeFishCook"
+            android:exported="false" />
+        <activity
+            android:name=".PorkChop"
+            android:exported="false" />
+        <activity
+            android:name=".PorkRibs"
+            android:exported="false" />
+        <activity
+            android:name=".PorkBelly"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayCook"
+            android:exported="false" />
+        <activity
+            android:name=".SoftBoiled"
+            android:exported="false" />
+        <activity
+            android:name=".Medium"
+            android:exported="false" />
+        <activity
+            android:name=".JustSet"
+            android:exported="false" />
+        <activity
+            android:name=".Runny"
+            android:exported="false" />
+        <activity
+            android:name=".Hamburger"
+            android:exported="false" />
+        <activity
+            android:name=".Sirloin"
+            android:exported="false" />
+        <activity
+            android:name=".Cutlet"
+            android:exported="false" />
+        <activity
+            android:name=".Tbone"
+            android:exported="false" />
+        <activity
+            android:name=".Tenderloin"
+            android:exported="false" />
+        <activity
+            android:name=".Ribeye"
+            android:exported="false" />
+        <activity
+            android:name=".DuckBreast"
+            android:exported="false" />
+        <activity
+            android:name=".ChickLeg"
+            android:exported="false" />
+        <activity
+            android:name=".ManualCook"
+            android:exported="false" />
+        <activity
+            android:name=".ChickThighBoneless"
+            android:exported="false" />
+        <activity
+            android:name=".ChickThighBone"
+            android:exported="false" />
+        <activity
+            android:name=".ChickBreastBoneless"
+            android:exported="false" />
+        <activity
+            android:name=".TypePorkCook"
+            android:exported="false" />
+        <activity
+            android:name=".ChickBreastBone"
+            android:exported="false" />
+        <activity
+            android:name=".TypeChickenCook"
+            android:exported="false" />
+        <activity
+            android:name=".TypeBeefCook"
+            android:exported="false" />
+        <activity
+            android:name=".TypeEggCook"
+            android:exported="false" />
+        <activity
+            android:name=".FoodChooser"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

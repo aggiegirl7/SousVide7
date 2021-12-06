@@ -1,0 +1,55 @@
+
+<resources>
+    <string-array name="FishThick" >
+
+        <item>.50 inch / 13 mm</item>
+        <item>1.00 inch / 25 mm</item>
+        <item>1.50 inch / 38 mm</item>
+        <item>2.00 inch / 51 mm</item>
+        <item>2.50 inch / 63 mm</item>
+        <item>3.00 inch / 76 mm</item>
+    </string-array>
+
+    <string-array name = "FishTime1" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+    <string-array name = "FishTime2" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+    <string-array name = "FishTime3" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+    <string-array name = "FishTime4" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+    <string-array name = "FishTime5" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+    <string-array name = "FishTime6" >
+        <item>Very Lightly Cooked</item>
+        <item>Lightly Cooked</item>
+        <item>Medium </item>
+        <item>Flaky and Firm </item>
+    </string-array>
+
+</resources>
