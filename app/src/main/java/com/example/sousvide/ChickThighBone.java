@@ -218,7 +218,7 @@ public class ChickThighBone extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.CookDisplaypage:
 
-                Intent ChickBreastintent = new Intent(this, DisplayCook.class);
+                Intent ChickBreastintent = new Intent(this, DisplayPreset.class);
                 //ChickBreastintent.putExtra("TEST",spinBreastbonetest);
                 startActivity(ChickBreastintent);
                 //break;

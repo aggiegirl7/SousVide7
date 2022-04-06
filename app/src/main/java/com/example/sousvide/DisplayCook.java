@@ -22,8 +22,13 @@ public class DisplayCook extends AppCompatActivity {
         TextView textView1 = (TextView) findViewById(R.id.ManualTempdisp);
         //TextView textView3 = (TextView) findViewById(R.id.test);
 
+        Intent example = getIntent();
+        String str = intent.getStringExtra("message");
 
-        textView2.setText("" +ManualTimevar + " hour(s)" );
+
+
+
+        textView2.setText("" + ManualTimevar + " hour(s)" );
         textView1.setText("" +ManualTempvar + "\u2109");
         //String example1 = getIntent().getStringExtra("TEST");
         //textView3.setText(example1);

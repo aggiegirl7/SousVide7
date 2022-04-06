@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_chick_breast_bone.xml" value="0.1" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_chick_breast_bone.xml" value="0.268" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_chick_breast_boneless.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_chick_leg.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_chick_thigh_bone.xml" value="0.2" />
@@ -11,13 +11,15 @@
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_contraint.xml" value="0.1296875" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_cutlet.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_cutlet_thick.xml" value="0.1" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_databasetest.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_display_cook.xml" value="0.268" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_display_preset.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_duck_breast.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_food_chooser.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_general_fish.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_hamburger.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_just_set.xml" value="0.1" />
-        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_manual_cook.xml" value="0.132" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_medium.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_pork_belly.xml" value="0.1" />
@@ -31,6 +33,7 @@
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_soft_boiled.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_tbone.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_tenderloin.xml" value="0.1" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_testing.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_tilapia.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_tuna.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_type_beef_cook.xml" value="0.16328125" />
@@ -38,6 +41,8 @@
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_type_egg_cook.xml" value="0.132" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_type_fish_cook.xml" value="0.22805429864253393" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_type_pork_cook.xml" value="0.1" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_wifi_check.xml" value="0.15198087431693988" />
+        <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/activity_wifi_connect.xml" value="0.1" />
         <entry key="..\:/Users/aggie/AndroidStudioProjects/SousVide2/app/src/main/res/layout/constraint.xml" value="0.1" />
       </map>
     </option>
