@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class PorkRibs extends AppCompatActivity implements View.OnClickListener {
     private Spinner spinPorkRibs;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,done,thick;
     int PorkRibsTemp, PorkRibsTime;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,94 +90,224 @@ public class PorkRibs extends AppCompatActivity implements View.OnClickListener 
 
                 switch(selectedDiv)
                 {
+                    case "Rare":
+                        if (x.equals(".50 inch / 13 mm"))
+                        { PorkRibsTemp = 130;                        // passing temp variable in F
+                            PorkRibsTime = 110 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Rare";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
+
+                        }
+
+                        if (x.equals("1.00 inch / 25 mm"))
+                        {  PorkRibsTemp = 130;
+                            PorkRibsTime = 165 * 60000;
+                            done = "Rare";
+                            thick = "1.00 inch / 25 mm";
+                        }
+
+                        if (x.equals("1.50 inch / 38 mm"))
+                        {PorkRibsTemp = 130;
+                            PorkRibsTime = 205 * 60000;
+                            done = "Rare";
+                            thick = "1.50 inch / 38 mm";
+                        }
+
+                        if (x.equals("2.00 inch / 51 mm"))
+                        {PorkRibsTemp = 130;
+                            PorkRibsTime = 270 * 60000;
+                            done = "Rare";
+                            thick = "2.00 inch / 51 mm";}
+
+                        if (x.equals("2.50 inch / 63 mm"))
+                        {PorkRibsTemp = 130;
+                            PorkRibsTemp = 340 * 60000;
+                            done = "Rare";
+                            thick = "2.50 inch / 63 mm";}
+
+                        if (x.equals("3.00 inch / 76 mm"))
+                        {PorkRibsTemp = 135;
+                            PorkRibsTime = 390 * 60000;
+                            done = "Rare";
+                            thick = "3.00 inch / 76 mm";}
+                        break;
+
                     case "Medium Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { PorkRibsTemp = 10;
-                            PorkRibsTime = 20;
+                        { PorkRibsTemp = 140;
+                            PorkRibsTime = 110 * 60000;
+                            done = "Medium Rare";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { PorkRibsTemp = 30;
-                            PorkRibsTime = 40;
+                        { PorkRibsTemp = 140;
+                            PorkRibsTime = 165 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {PorkRibsTemp = 50;
-                            PorkRibsTime = 60;
+                        {PorkRibsTemp = 140;
+                            PorkRibsTime = 205 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {PorkRibsTemp = 70;
-                            PorkRibsTime = 80;}
+                        {PorkRibsTemp = 140;
+                            PorkRibsTime = 270 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {PorkRibsTemp = 90;
-                            PorkRibsTemp = 100;}
+                        {PorkRibsTemp = 140;
+                            PorkRibsTime = 340 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {PorkRibsTemp = 110;
-                            PorkRibsTime = 120;}
-                        break;
+                        {PorkRibsTemp = 144;
+                            PorkRibsTime = 390 * 60000;
+                            done = "Medium Rare";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
+                        break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { PorkRibsTemp = 130;
-                            PorkRibsTime = 140;
-                            booyah = "ow ow med rare";}
+                        { PorkRibsTemp = 151;
+                            PorkRibsTime = 110 * 60000;
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { PorkRibsTemp = 150;
-                            PorkRibsTime = 160;
-                            booyah = "bow chicka med rare";}
+                        { PorkRibsTemp = 151;
+                            PorkRibsTime = 165 * 60000;
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {PorkRibsTemp = 170;
-                            PorkRibsTime = 180;
-                            booyah = "u got this med rare";}
+                        {PorkRibsTemp = 144;
+                            PorkRibsTime = 205 * 60000;
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {PorkRibsTemp = 190;
-                            PorkRibsTime = 200;}
+                        {PorkRibsTemp = 144;
+                            PorkRibsTime = 270 * 60000;
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {PorkRibsTemp = 210;
-                            PorkRibsTime = 220;}
+                        {PorkRibsTemp = 144;
+                            PorkRibsTime = 340 * 60000;
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {PorkRibsTemp = 230;
-                            PorkRibsTime = 240;}
+                        {PorkRibsTemp = 144;
+                            PorkRibsTime = 390 * 60000;
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
-                    case "Well":
+
+                    case "Medium Well":
                         if (x.equals(".50 inch / 13 mm"))
-                        { PorkRibsTemp = 250;
-                            PorkRibsTime = 260;
+                        { PorkRibsTemp = 155;
+                            PorkRibsTime = 110 * 60000;
+                            done = "Well";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { PorkRibsTemp = 270;
-                            PorkRibsTime = 280;
+                        { PorkRibsTemp = 155;
+                            PorkRibsTime = 165 * 60000;
+                            done = "Well";
+                            thick = "1.00 inch / 25 mm";
+
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {PorkRibsTemp = 290;
-                            PorkRibsTime = 300;
+                        {PorkRibsTemp = 155;
+                            PorkRibsTime = 205 * 60000;
+                            done = "Well";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {PorkRibsTemp = 310;
-                            PorkRibsTime = 320;}
+                        {PorkRibsTemp = 155;
+                            PorkRibsTime = 270 * 60000;
+                            done = "Well";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {PorkRibsTemp = 330;
-                            PorkRibsTime = 340;}
+                        {PorkRibsTemp = 155;
+                            PorkRibsTime = 340 * 60000;
+                            done = "Well";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {PorkRibsTemp = 350;
-                            PorkRibsTime = 360;}
+                        {PorkRibsTemp = 155;
+                            PorkRibsTime = 390 * 60000;
+                            done = "Well";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
+                    case "Well Done":
+
+                        if (x.equals(".50 inch / 13 mm"))
+                        { PorkRibsTemp = 160;
+                            PorkRibsTime = 110 * 60000;
+                            done = "Well Done";
+                            thick = ".50 inch / 13 mm";
+                        }
+
+                        if (x.equals("1.00 inch / 25 mm"))
+                        { PorkRibsTemp = 160;
+                            PorkRibsTime = 165 * 60000;
+                            done = "Well Done";
+                            thick = "1.00 inch / 25 mm";
+
+                        }
+
+                        if (x.equals("1.50 inch / 38 mm"))
+                        {PorkRibsTemp = 160;
+                            PorkRibsTime = 205 * 60000;
+                            done = "Well Done";
+                            thick = "1.50 inch / 38 mm";
+                        }
+
+                        if (x.equals("2.00 inch / 51 mm"))
+                        {PorkRibsTemp = 160;
+                            PorkRibsTime = 270 * 60000;
+                            done = "Well Done";
+                            thick = "2.00 inch / 51 mm";}
+
+                        if (x.equals("2.50 inch / 63 mm"))
+                        {PorkRibsTemp = 160;
+                            PorkRibsTime = 340 * 60000;
+                            done = "Well Done";
+                            thick = "2.50 inch / 63 mm";}
+
+                        if (x.equals("3.00 inch / 76 mm"))
+                        {PorkRibsTemp = 160;
+                            PorkRibsTime = 390 * 60000;
+                            done = "Well Done";
+                            thick = "3.00 inch / 76 mm";}
+
+                        break;
 
 
 
@@ -209,9 +352,106 @@ public class PorkRibs extends AppCompatActivity implements View.OnClickListener 
                 //break;
         }
 
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
+
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(PorkRibsTemp);
+        String chickBreastTime = String.valueOf(PorkRibsTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+        startActivity(example);
+        //notification();
+
+
+
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+        ;
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference("SendData");
+
+
+        sendData =new
+
+                SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(PorkRibsTime);
+        sendData.getTemp(PorkRibsTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+                                                        ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                // inside the method of on Data change we are setting
+                                                                // our object class to our database reference.
+                                                                // data base reference will sends data to firebase.
+                                                                databaseReference.setValue(sendData);
+
+                                                                // after adding this data we are showing toast message.
+                                                                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                                // if the data is not added or it is cancelled then
+                                                                // we are displaying a failure toast message.
+                                                                Toast.makeText(PorkRibs.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                                                            }
+
+
+                                                        });}
 
     }
 
 
 
-}
+

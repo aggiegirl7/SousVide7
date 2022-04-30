@@ -16,6 +16,33 @@
         tools:context=".FoodChooser">
 
 
+        <Button
+            android:id="@+id/tunaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1156dp"
+            android:text="Tuna"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/catfishPic"
+            android:layout_width="154dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="820dp"
+            android:adjustViewBounds="true"
+            android:background="#EFECEC"
+            android:maxWidth="120dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/catfish" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -114,7 +141,7 @@
             android:id="@+id/TunaPic"
             android:layout_width="154dp"
             android:layout_height="80dp"
-            android:layout_marginTop="820dp"
+            android:layout_marginTop="1052dp"
             android:adjustViewBounds="true"
             android:background="#EFECEC"
             android:maxWidth="120dp"
@@ -127,13 +154,12 @@
             app:srcCompat="@drawable/tuna" />
 
         <Button
-            android:id="@+id/TunaButton"
+            android:id="@+id/catfishButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="924dp"
-            android:text="Tuna"
+            android:layout_marginTop="940dp"
+            android:text="Catfish"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

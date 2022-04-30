@@ -1,42 +1,27 @@
 package com.example.sousvide;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
 import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.StringRequestListener;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.ktx.Firebase;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.text.Normalizer;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class ChickBreastBone extends AppCompatActivity implements View.OnClickListener {
     Spinner spinBreastBone;
@@ -132,9 +117,8 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
                     case "Lowest Time/ Juicy":
                         if (x.equals(".50 inch / 13 mm"))
                         {
-                            ChickBreastBoneTemp = 137;
-                        // passing temp variable in F
-                            ChickBreastBoneTime = 110;
+                            ChickBreastBoneTemp = 120;                        // passing temp variable in F
+                            ChickBreastBoneTime = 65 * 60000;//6600000;
                             //passing variable in minutes
                             done = "Lowest Time/ Juicy";
                             //will pass string to show user "doneness" selection
@@ -144,80 +128,80 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { ChickBreastBoneTemp = 137;
-                            ChickBreastBoneTime = 135;
+                        { ChickBreastBoneTemp = 140;
+                            ChickBreastBoneTime = 115*60000;
                             done = "Lowest Time/ Juicy";
                             thick = "1.00 inch / 25 mm";
                             }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {ChickBreastBoneTemp = 50;
-                            ChickBreastBoneTime = 60;
+                        {ChickBreastBoneTemp = 140;
+                            ChickBreastBoneTime = 170*60000;
                             done = "Lowest Time/ Juicy";
                             thick = "1.50 inch / 38 mm";
                             }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {ChickBreastBoneTemp = 70;
-                            ChickBreastBoneTime = 80;
+                        {ChickBreastBoneTemp = 140;
+                            ChickBreastBoneTime = 220*60000;
                             done = "Lowest Time/ Juicy";
                             thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {ChickBreastBoneTemp = 90;
-                            ChickBreastBoneTemp = 100;
+                        {ChickBreastBoneTemp = 140;
+                            ChickBreastBoneTemp = 285*60000;
                             done = "Lowest Time/ Juicy";
                             thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickBreastBoneTemp = 110;
-                            ChickBreastBoneTime = 120;
+                            ChickBreastBoneTemp = 140;
+                            ChickBreastBoneTime = 350*60000;
                             done = "Lowest Time/ Juicy";
                             thick = "3.00 inch / 76 mm";}
                             break;
 
                         case "Medium Time/ Medium Cook":
                             if (x.equals(".50 inch / 13 mm")) {
-                                ChickBreastBoneTemp = 130;
-                                    ChickBreastBoneTime = 140;
+                                ChickBreastBoneTemp = 147;
+                                    ChickBreastBoneTime = 45*60000;
                                 done = "Medium Time/ Medium Cook";
                                 thick = ".50 inch / 13 mm";
 
                                 }
 
                                 if (x.equals("1.00 inch / 25 mm")) {
-                                    ChickBreastBoneTemp = 150;
-                                    ChickBreastBoneTime = 160;
+                                    ChickBreastBoneTemp = 147;
+                                    ChickBreastBoneTime = 95*60000;
                                     done = "Medium Time/ Medium Cook";
                                     thick = "1.00 inch / 25 mm";
 
                                 }
 
                                 if (x.equals("1.50 inch / 38 mm")) {
-                                    ChickBreastBoneTemp =170;
-                                    ChickBreastBoneTime = 180;
+                                    ChickBreastBoneTemp =147;
+                                    ChickBreastBoneTime = 135*60000;
                                     done = "Medium Time/ Medium Cook";
                                     thick = "1.50 inch / 38 mm";
 
                                 }
 
                                 if (x.equals("2.00 inch / 51 mm")) {
-                                    ChickBreastBoneTemp = 190;
-                                    ChickBreastBoneTime = 200;
+                                    ChickBreastBoneTemp = 147;
+                                    ChickBreastBoneTime = 175*60000;
                                     done = "Medium Time/ Medium Cook";
                                     thick = "2.00 inch / 51 mm";
                                 }
 
                                 if (x.equals("2.50 inch / 63 mm")) {
-                                    ChickBreastBoneTemp = 210;
-                                    ChickBreastBoneTime = 220;
+                                    ChickBreastBoneTemp = 147;
+                                    ChickBreastBoneTime = 235*60000;
                                     done = "Medium Time/ Medium Cook";
                                     thick = "2.50 inch / 63 mm";
                                 }
 
                                 if (x.equals("3.00 inch / 76 mm")) {
-                                    ChickBreastBoneTemp = 230;
-                                    ChickBreastBoneTime = 240;
+                                    ChickBreastBoneTemp = 147;
+                                    ChickBreastBoneTime = 275*60000;
                                     done = "Medium Time/ Medium Cook";
                                     thick = "3.00 inch / 76 mm";
                                 }
@@ -225,46 +209,47 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case "Highest Time/ Thorough Cook":
                                 if (x.equals(".50 inch / 13 mm")) {
-                                    ChickBreastBoneTemp = 250;
-                                    ChickBreastBoneTime = 260;
+                                    ChickBreastBoneTemp = 175;
+                                    ChickBreastBoneTime = 20*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = ".50 inch / 13 mm";
 
                                 }
 
                                 if (x.equals("1.00 inch / 25 mm")) {
-                                    ChickBreastBoneTemp = 270;
-                                    ChickBreastBoneTime = 280;
+                                    ChickBreastBoneTemp = 155;
+                                    ChickBreastBoneTime = 80*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = "1.00 inch / 25 mm";
 
                                 }
 
                                 if (x.equals("1.50 inch / 38 mm")) {
-                                    ChickBreastBoneTemp = 290;
-                                    ChickBreastBoneTime = 300;
+                                    ChickBreastBoneTemp = 155;
+                                    ChickBreastBoneTime = 120*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = "1.50 inch / 38 mm";
 
                                 }
 
                                 if (x.equals("2.00 inch / 51 mm")) {
-                                    ChickBreastBoneTemp = 310;
-                                    ChickBreastBoneTime = 320;
+                                    ChickBreastBoneTemp = 155;
+
+                                    ChickBreastBoneTime = 185*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = "2.00 inch / 51 mm";
                                 }
 
                                 if (x.equals("2.50 inch / 63 mm")) {
-                                    ChickBreastBoneTemp = 330;
-                                    ChickBreastBoneTime = 340;
+                                    ChickBreastBoneTemp =155 ;
+                                    ChickBreastBoneTime = 215*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = "2.50 inch / 63 mm";
                                 }
 
                                 if (x.equals("3.00 inch / 76 mm")) {
-                                    ChickBreastBoneTemp = 350;
-                                    ChickBreastBoneTime = 360;
+                                    ChickBreastBoneTemp = 155;
+                                    ChickBreastBoneTime = 260*60000;
                                     done = "Highest Time/ Thorough Cook";
                                     thick = "3.00 inch / 76 mm";
                                 }
@@ -283,6 +268,8 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
+
         });
 
     }
@@ -318,6 +305,7 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
                 example.putExtra("message4",chickBreastTime);
 
                 startActivity(example);
+                //notification();
 
 
 
@@ -358,6 +346,8 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
 
 
         };
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("SendData");
 
@@ -369,8 +359,8 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
         //private void addDatatoFirebase(int testTemp, int testTime) {
         // below 3 lines of code is used to set
         // data in our object class.
-        sendData.getTime(ChickBreastBoneTemp);
-        sendData.getTemp(ChickBreastBoneTime);
+        sendData.getTime(ChickBreastBoneTime);
+        sendData.getTemp(ChickBreastBoneTemp);
 
 
         // we are use add value event listener method
@@ -396,4 +386,39 @@ public class ChickBreastBone extends AppCompatActivity implements View.OnClickLi
         });
 
 
-    }}
+
+
+    }
+
+    /*private void notification()  {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+               // .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle("textTitle")
+                .setContentText("textContent")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        int notificationID = 101;
+
+        NotificationManager notifyMgr = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        notifyMgr.notify(notificationID, builder.build());*/
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                NotificationChannel channel =
+                        new NotificationChannel("n", "n", NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager manager = getSystemService(NotificationManager.class);
+                manager.createNotificationChannel(channel);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "n")
+                        .setContentText("Bailey Works")
+                        // .setSmallIcon(R.drawable.)
+                        .setAutoCancel(true)
+                        .setContentText("Water Level Low!");
+
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+                managerCompat.notify(999, builder.build());
+                Log.i("bro", "Notification()");
+                Toast.makeText(ChickBreastBone.this, "Notification()", Toast.LENGTH_LONG).show();
+*/             // notificationManager.notify()
+            }
+
+

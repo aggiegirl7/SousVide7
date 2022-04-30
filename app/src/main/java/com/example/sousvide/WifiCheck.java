@@ -37,13 +37,15 @@ public class WifiCheck extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
 
-               // if (isConnectedTo ("Charlie", WifiCheck.this)) {
+                if (isConnectedTo("SousVide", WifiCheck.this)) {
+                    Toast.makeText(WifiCheck.this, "Nice job! You're connected to SousVide.", Toast.LENGTH_LONG).show();
 
                     //Call into other class
-                    openFoodChooser();}
-                   // else{
-                    //Toast.makeText(WifiCheck.this, "\n Class: \t " + "NOPE" , Toast.LENGTH_LONG).show();}
-
+                    openFoodChooser();
+                } else {
+                    Toast.makeText(WifiCheck.this, "You are not connected to the correct wifi, please try again.", Toast.LENGTH_LONG).show();
+                }
+            }
 
 
 

@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Salmon extends AppCompatActivity implements View.OnClickListener {
     private Spinner spinSalmon;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,thick, done;
     int SalmonTemp, SalmonTime;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,119 +91,206 @@ public class Salmon extends AppCompatActivity implements View.OnClickListener {
                 switch(selectedDiv)
                 {
                     case "Very Lightly Cooked":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { SalmonTemp = 10;
-                            SalmonTime = 20;
-                        }
+                        if (x.equals(".50 inch / 13 mm")) {
+                            SalmonTemp = 110;
+                            SalmonTime = 15 * 60*60;
 
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                        }
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SalmonTemp = 30;
-                            SalmonTime = 40;
+                        { SalmonTemp = 110;
+                            SalmonTime = 35*60*60;
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SalmonTemp = 50;
-                            SalmonTime = 60;
+                        { SalmonTemp = 110;
+
+                            SalmonTime = 85*60*60;
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SalmonTemp = 70;
-                            SalmonTime = 80;}
+                        {SalmonTemp = 110;
+                            SalmonTime = 120*60*60;
+
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SalmonTemp = 90;
-                            SalmonTemp = 100;}
+                        {SalmonTemp = 110;
+                            SalmonTime = 155*60*60;
+
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
                         {SalmonTemp = 110;
-                            SalmonTime = 120;}
+                            SalmonTime = 200*60*60;
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "3.00 inch / 76 mm";
+                        }
                         break;
 
                     case "Lightly Cooked":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { SalmonTemp = 130;
-                            SalmonTime = 140;
-                            booyah = "ow ow med rare";}
+                        if (x.equals(".50 inch / 13 mm")) {
+                            SalmonTemp = 120;
+                            SalmonTime = 15 * 60*60;
 
+                            done = "Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch / 13 mm";
+                        }
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SalmonTemp = 150;
-                            SalmonTime = 160;
-                            booyah = "bow chicka med rare";}
+                        { SalmonTemp = 120;
+                            SalmonTime = 35  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "1.00 inch / 25 mm";}
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SalmonTemp = 170;
-                            SalmonTime = 180;
-                            booyah = "u got this med rare";}
+                        {SalmonTemp = 120;
+                            SalmonTime = 85  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "1.50 inch / 38 mm";}
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SalmonTemp = 190;
-                            SalmonTime = 200;}
+                        {SalmonTemp = 120;
+                            SalmonTime = 120  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SalmonTemp = 210;
-                            SalmonTime = 220;}
+                        {SalmonTemp = 120;
+                            SalmonTime = 155*60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "2.50 inch / 63 mm";
+                        }
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SalmonTemp = 230;
-                            SalmonTime = 240;}
+                        {SalmonTemp = 120;
+                            SalmonTime = 200  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SalmonTemp = 250;
-                            SalmonTime = 260;
+                        { SalmonTemp = 132;
+                            SalmonTime = 15  * 60*60;
+
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
+
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SalmonTemp = 270;
-                            SalmonTime = 280;
+                        { SalmonTemp = 132;
+                            SalmonTime = 35  *60*60;
+
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SalmonTemp = 290;
-                            SalmonTime = 300;
+                        {SalmonTemp = 132;
+                            SalmonTime = 85  *60*60;
+
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SalmonTemp = 310;
-                            SalmonTime = 320;}
+                        {SalmonTemp = 132;
+                            SalmonTime = 120  *60*60;
+
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SalmonTemp = 330;
-                            SalmonTime = 340;}
+                        {SalmonTemp = 132;
+                            SalmonTime = 155  *60*60;
+
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";
+                        }
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SalmonTemp = 350;
-                            SalmonTime = 360;}
+                        {SalmonTemp = 132;
+                            SalmonTime = 200  *60000;
+
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
+
 
                         break;
                     case "Flaky and Firm":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SalmonTemp = 370;
-                            SalmonTime = 380;
+                        { SalmonTemp = 140;
+                            SalmonTime = 15  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SalmonTemp = 390;
-                            SalmonTime = 400;
+                        { SalmonTemp = 140;
+                            SalmonTime = 45  *60*60;
+
+                            thick = "1.00 inch / 25 mm";
+                            done = "Flaky and Firm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SalmonTemp = 410;
-                            SalmonTime = 420;
+                        {   SalmonTemp = 140;
+                            SalmonTime = 85*60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SalmonTemp = 430;
-                            SalmonTime = 440;}
+                        {SalmonTemp = 140;
+                            SalmonTime = 120  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SalmonTemp = 450;
-                            SalmonTime = 460;}
+                        {SalmonTemp = 140;
+                            SalmonTime = 155  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SalmonTemp = 470;
-                            SalmonTime = 480;}
+                        {SalmonTemp = 140;
+                            SalmonTime = 200 *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
 
@@ -236,11 +336,126 @@ public class Salmon extends AppCompatActivity implements View.OnClickListener {
                 //ChickBreastintent.putExtra("TEST",spinBreastbonetest);
                 startActivity(ChickBreastintent);
                 //break;
+
+
+                Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+                //ChickBreastBoneTemp = 137;
+                // passing temp variable in F
+                //ChickBreastBoneTime = 110;
+
+                String doneVar = String.valueOf(done);
+                String thickVar = String.valueOf(thick);
+                String chickBreastTemp = String.valueOf(SalmonTemp);
+                String chickBreastTime = String.valueOf(SalmonTime);
+               // String App = String.valueOf(Apptime);
+
+                example.putExtra("message", doneVar);
+                example.putExtra("message2", thickVar);
+                example.putExtra("message3", chickBreastTemp);
+                example.putExtra("message4", chickBreastTime);
+                //example.putExtra("message5", App);
+
+                startActivity(example);
+
+
         }
 
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
 
-    }
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(SalmonTemp);
+        String chickBreastTime = String.valueOf(SalmonTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+        startActivity(example);
+        //notification();
 
 
 
-}
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+        ;
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference("SendData");
+
+
+        sendData =new
+
+                SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(SalmonTime);
+        sendData.getTemp(SalmonTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+                                                        ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                // inside the method of on Data change we are setting
+                                                                // our object class to our database reference.
+                                                                // data base reference will sends data to firebase.
+                                                                databaseReference.setValue(sendData);
+
+                                                                // after adding this data we are showing toast message.
+                                                                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                                // if the data is not added or it is cancelled then
+                                                                // we are displaying a failure toast message.
+                                                                Toast.makeText(Salmon.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                                                            }
+
+        });
+
+
+    }}

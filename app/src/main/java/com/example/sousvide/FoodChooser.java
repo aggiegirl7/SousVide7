@@ -58,7 +58,7 @@ public class FoodChooser extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.imageButton2:
             case R.id.EggButton:
-                openTypeEggCook();
+                openJustSet();
                 break;
             case R.id.ChickenButton:
             case R.id.ChickenPicButton:
@@ -85,8 +85,8 @@ public class FoodChooser extends AppCompatActivity implements View.OnClickListen
 
 
 
-    public void openTypeEggCook() {
-        Intent intent = new Intent(this, TypeEggCook.class);
+    public void openJustSet() {
+        Intent intent = new Intent(this, JustSet.class);
         startActivity(intent);
     }
     public void openTypeChickenCook() {

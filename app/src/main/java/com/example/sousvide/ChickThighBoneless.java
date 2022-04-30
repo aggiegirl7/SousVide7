@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,24 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class ChickThighBoneless extends AppCompatActivity implements View.OnClickListener{
     Spinner spinChickThighBoneless;
     Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,done,thick;
     int ChickThighBonelessTemp, ChickThighBonelessTime;
+
+    //DATABASE
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
 
     @Override
@@ -78,101 +92,144 @@ public class ChickThighBoneless extends AppCompatActivity implements View.OnClic
                 switch(selectedDiv)
                 {
                     case "Lowest Time/ Juicy":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { ChickThighBonelessTemp = 10;
-                            ChickThighBonelessTime = 20;
+                        if (x.equals(".50 inch / 13 mm")) {
+                            ChickThighBonelessTemp = 140;                        // passing temp variable in F
+                            ChickThighBonelessTime = 45 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Lowest Time/ Juicy";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
                         }
 
-                        if (x.equals("1.00 inch / 25 mm"))
-                        { ChickThighBonelessTemp = 30;
-                            ChickThighBonelessTime = 40;
+                        if (x.equals("1.00 inch / 25 mm")) {
+                            ChickThighBonelessTemp = 140;
+                            ChickThighBonelessTime = 95 * 60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "1.00 inch / 25 mm";
                         }
 
-                        if (x.equals("1.50 inch / 38 mm"))
-                        {ChickThighBonelessTemp = 50;
-                            ChickThighBonelessTime = 60;
+                        if (x.equals("1.50 inch / 38 mm")) {
+                            ChickThighBonelessTemp = 140;
+                            ChickThighBonelessTime = 150 * 60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "1.50 inch / 38 mm";
                         }
 
-                        if (x.equals("2.00 inch / 51 mm"))
-                        {ChickThighBonelessTemp = 70;
-                            ChickThighBonelessTime = 80;}
+                        if (x.equals("2.00 inch / 51 mm")) {
+                            ChickThighBonelessTemp = 140;
+                            ChickThighBonelessTime = 200 * 60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
-                        if (x.equals("2.50 inch / 63 mm"))
-                        {ChickThighBonelessTemp = 90;
-                            ChickThighBonelessTemp = 100;}
+                        if (x.equals("2.50 inch / 63 mm")) {
+                            ChickThighBonelessTemp = 140;
+                            ChickThighBonelessTemp = 265 * 60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "2.50 inch / 63 mm";
+                        }
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBonelessTemp = 110;
-                            ChickThighBonelessTime = 120;}
+                            ChickThighBonelessTemp = 140;
+                            ChickThighBonelessTime = 330 * 60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "3.00 inch / 76 mm";
+                        }
                         break;
 
                     case "Medium Time/ Medium Cook":
                         if (x.equals(".50 inch / 13 mm")) {
-                            ChickThighBonelessTemp = 130;
-                            ChickThighBonelessTime = 140;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 25 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = ".50 inch / 13 mm";
 
                         }
 
                         if (x.equals("1.00 inch / 25 mm")) {
-                            ChickThighBonelessTemp = 150;
-                            ChickThighBonelessTime = 160;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 75 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "1.00 inch / 25 mm";
 
                         }
 
                         if (x.equals("1.50 inch / 38 mm")) {
-                            ChickThighBonelessTemp =170;
-                            ChickThighBonelessTime = 180;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 115 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "1.50 inch / 38 mm";
 
                         }
 
                         if (x.equals("2.00 inch / 51 mm")) {
-                            ChickThighBonelessTemp = 190;
-                            ChickThighBonelessTime = 200;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 155 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "2.00 inch / 51 mm";
                         }
 
                         if (x.equals("2.50 inch / 63 mm")) {
-                            ChickThighBonelessTemp = 210;
-                            ChickThighBonelessTime = 220;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 215 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "2.50 inch / 63 mm";
                         }
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBonelessTemp = 230;
-                            ChickThighBonelessTime = 240;
+                            ChickThighBonelessTemp = 147;
+                            ChickThighBonelessTime = 255 * 60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "3.00 inch / 76 mm";
                         }
 
                         break;
                     case "Highest Time/ Thorough Cook":
                         if (x.equals(".50 inch / 13 mm")) {
-                            ChickThighBonelessTemp = 250;
-                            ChickThighBonelessTime = 260;
+                            ChickThighBonelessTemp = 155;
+                            ChickThighBonelessTime = 20 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = ".50 inch / 13 mm";
 
                         }
 
                         if (x.equals("1.00 inch / 25 mm")) {
-                            ChickThighBonelessTemp = 270;
-                            ChickThighBonelessTime = 280;
+                            ChickThighBonelessTemp = 155;
+                            ChickThighBonelessTime = 60 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "1.00 inch / 25 mm";
 
                         }
 
                         if (x.equals("1.50 inch / 38 mm")) {
-                            ChickThighBonelessTemp = 290;
-                            ChickThighBonelessTime = 300;
+                            ChickThighBonelessTemp = 155;
+                            ChickThighBonelessTime = 100 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "1.50 inch / 38 mm";
 
                         }
 
                         if (x.equals("2.00 inch / 51 mm")) {
-                            ChickThighBonelessTemp = 310;
-                            ChickThighBonelessTime = 320;
+                            ChickThighBonelessTemp = 155;
+
+                            ChickThighBonelessTime = 165 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "2.00 inch / 51 mm";
                         }
 
                         if (x.equals("2.50 inch / 63 mm")) {
-                            ChickThighBonelessTemp = 330;
-                            ChickThighBonelessTime = 340;
+                            ChickThighBonelessTemp = 155;
+                            ChickThighBonelessTime = 195 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "2.50 inch / 63 mm";
                         }
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBonelessTemp = 350;
-                            ChickThighBonelessTime = 360;
+                            ChickThighBonelessTemp = 155;
+                            ChickThighBonelessTime = 240 * 60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "3.00 inch / 76 mm";
                         }
 
 
@@ -222,4 +279,110 @@ public class ChickThighBoneless extends AppCompatActivity implements View.OnClic
                 //ChickBreastintent.putExtra("TEST",spinBreastbonetest);
                 startActivity(ChickBreastintent);
                 //break;
-        }}}
+
+
+
+                Intent example = new Intent(getApplicationContext(),DisplayPreset.class);
+                //ChickThighBonelessTemp = 137;
+                // passing temp variable in F
+                //ChickThighBonelessTime = 110;
+
+                String doneVar = String.valueOf(done);
+                String thickVar = String.valueOf(thick);
+                String chickBreastTemp = String.valueOf(ChickThighBonelessTemp);
+                String chickBreastTime = String.valueOf(ChickThighBonelessTime);
+
+                example.putExtra("message",doneVar);
+                example.putExtra("message2",thickVar);
+                example.putExtra("message3",chickBreastTemp);
+                example.putExtra("message4",chickBreastTime);
+
+                startActivity(example);
+                //notification();
+
+
+
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickThighBonelessTemp", "350")
+                        .add("ChickThighBonelessTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+
+
+
+
+        };
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("SendData");
+
+
+        sendData = new SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(ChickThighBonelessTime);
+        sendData.getTemp(ChickThighBonelessTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // inside the method of on Data change we are setting
+                // our object class to our database reference.
+                // data base reference will sends data to firebase.
+                databaseReference.setValue(sendData);
+
+                // after adding this data we are showing toast message.
+                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // if the data is not added or it is cancelled then
+                // we are displaying a failure toast message.
+                Toast.makeText(ChickThighBoneless.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+    }
+        }
+
+
+

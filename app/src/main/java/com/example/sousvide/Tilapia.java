@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Tilapia extends AppCompatActivity implements View.OnClickListener {
     private Spinner spinTilapia;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,done,thick;
     int TilapiaTemp, TilapiaTime;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,121 +92,209 @@ public class Tilapia extends AppCompatActivity implements View.OnClickListener {
                 switch(selectedDiv)
                 {
                     case "Very Lightly Cooked":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { TilapiaTemp = 10;
-                            TilapiaTime = 20;
-                        }
+                        if (x.equals(".50 inch / 13 mm")) {
+                            TilapiaTemp = 110;
+                            TilapiaTime = 15 * 60*60;
 
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                        }
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TilapiaTemp = 30;
-                            TilapiaTime = 40;
+                        { TilapiaTemp = 110;
+                            TilapiaTime = 35*60*60;
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TilapiaTemp = 50;
-                            TilapiaTime = 60;
+                        { TilapiaTemp = 110;
+
+                            TilapiaTime = 85*60*60;
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TilapiaTemp = 70;
-                            TilapiaTime = 80;}
+                        {TilapiaTemp = 110;
+                            TilapiaTime = 120*60*60;
+
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TilapiaTemp = 90;
-                            TilapiaTemp = 100;}
+                        {TilapiaTemp = 110;
+                            TilapiaTime = 155*60*60;
+
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
                         {TilapiaTemp = 110;
-                            TilapiaTime = 120;}
+                            TilapiaTime = 200*60*60;
+
+                            done = "Very Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = "3.00 inch / 76 mm";
+                        }
                         break;
 
                     case "Lightly Cooked":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { TilapiaTemp = 130;
-                            TilapiaTime = 140;
-                            booyah = "ow ow med rare";}
+                        if (x.equals(".50 inch / 13 mm")) {
+                            TilapiaTemp = 120;
+                            TilapiaTime = 15 * 60*60;
 
+                            done = "Lightly Cooked";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch / 13 mm";
+                        }
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TilapiaTemp = 150;
-                            TilapiaTime = 160;
-                            booyah = "bow chicka med rare";}
+                        { TilapiaTemp = 120;
+                            TilapiaTime = 35  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "1.00 inch / 25 mm";}
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TilapiaTemp = 170;
-                            TilapiaTime = 180;
-                            booyah = "u got this med rare";}
+                        {TilapiaTemp = 120;
+                            TilapiaTime = 85  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "1.50 inch / 38 mm";}
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TilapiaTemp = 190;
-                            TilapiaTime = 200;}
+                        {TilapiaTemp = 120;
+                            TilapiaTime = 120  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TilapiaTemp = 210;
-                            TilapiaTime = 220;}
+                        {TilapiaTemp = 120;
+                            TilapiaTime = 155*60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "2.50 inch / 63 mm";
+                        }
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TilapiaTemp = 230;
-                            TilapiaTime = 240;}
+                        {TilapiaTemp = 120;
+                            TilapiaTime = 200  *60*60;
+
+                            done = "Lightly Cooked";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TilapiaTemp = 250;
-                            TilapiaTime = 260;
+                        { TilapiaTemp = 132;
+                            TilapiaTime = 15  * 60*60;
+
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
+
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TilapiaTemp = 270;
-                            TilapiaTime = 280;
+                        { TilapiaTemp = 132;
+                            TilapiaTime = 35  *60*60;
+
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TilapiaTemp = 290;
-                            TilapiaTime = 300;
+                        {TilapiaTemp = 132;
+                            TilapiaTime = 85  *60*60;
+
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TilapiaTemp = 310;
-                            TilapiaTime = 320;}
+                        {TilapiaTemp = 132;
+                            TilapiaTime = 120  *60*60;
+
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TilapiaTemp = 330;
-                            TilapiaTime = 340;}
+                        {TilapiaTemp = 132;
+                            TilapiaTime = 155  *60*60;
+
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";
+                        }
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TilapiaTemp = 350;
-                            TilapiaTime = 360;}
+                        {TilapiaTemp = 132;
+                            TilapiaTime = 200  *60000;
+
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
+
 
                         break;
                     case "Flaky and Firm":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TilapiaTemp = 370;
-                            TilapiaTime = 380;
+                        { TilapiaTemp = 140;
+                            TilapiaTime = 15  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TilapiaTemp = 390;
-                            TilapiaTime = 400;
+                        { TilapiaTemp = 140;
+                            TilapiaTime = 45  *60*60;
+
+                            thick = "1.00 inch / 25 mm";
+                            done = "Flaky and Firm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TilapiaTemp = 410;
-                            TilapiaTime = 420;
+                        {   TilapiaTemp = 140;
+                            TilapiaTime = 85*60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TilapiaTemp = 430;
-                            TilapiaTime = 440;}
+                        {TilapiaTemp = 140;
+                            TilapiaTime = 120  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TilapiaTemp = 450;
-                            TilapiaTime = 460;}
+                        {TilapiaTemp = 140;
+                            TilapiaTime = 155  *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TilapiaTemp = 470;
-                            TilapiaTime = 480;}
+                        {TilapiaTemp = 140;
+                            TilapiaTime = 200 *60*60;
+
+                            done = "Flaky and Firm";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
+
 
 
 
@@ -238,10 +339,128 @@ public class Tilapia extends AppCompatActivity implements View.OnClickListener {
                 //ChickBreastintent.putExtra("TEST",spinBreastbonetest);
                 startActivity(ChickBreastintent);
                 //break;
+
+
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
+
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(TilapiaTemp);
+        String chickBreastTime = String.valueOf(TilapiaTime);
+        // String App = String.valueOf(Apptime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+        //example.putExtra("message5", App);
+
+        startActivity(example);
+
+
+    }
+
+    Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+    //ChickBreastBoneTemp = 137;
+    // passing temp variable in F
+    //ChickBreastBoneTime = 110;
+
+    String doneVar = String.valueOf(done);
+    String thickVar = String.valueOf(thick);
+    String chickBreastTemp = String.valueOf(TilapiaTemp);
+    String chickBreastTime = String.valueOf(TilapiaTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+    startActivity(example);
+    //notification();
+
+
+
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+    ;
+
+
+    firebaseDatabase = FirebaseDatabase.getInstance();
+    databaseReference =firebaseDatabase.getReference("SendData");
+
+
+    sendData =new
+
+    SendData();
+    // Integer testTemp = 20;
+    //Integer testTime = 50;
+
+    //private void addDatatoFirebase(int testTemp, int testTime) {
+    // below 3 lines of code is used to set
+    // data in our object class.
+        sendData.getTime(TilapiaTime);
+        sendData.getTemp(TilapiaTemp);
+
+
+    // we are use add value event listener method
+    // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+    ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            // inside the method of on Data change we are setting
+            // our object class to our database reference.
+            // data base reference will sends data to firebase.
+            databaseReference.setValue(sendData);
+
+            // after adding this data we are showing toast message.
+            // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            // if the data is not added or it is cancelled then
+            // we are displaying a failure toast message.
+            Toast.makeText(Tilapia.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
         }
 
 
     }
+        );}
 
 
 

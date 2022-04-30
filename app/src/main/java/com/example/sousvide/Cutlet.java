@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Cutlet extends AppCompatActivity implements View.OnClickListener {
     private Spinner spinCutlet;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x, done, thick;
     int CutletTemp, CutletTime;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,150 +92,180 @@ public class Cutlet extends AppCompatActivity implements View.OnClickListener {
                 {
                     case "Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { CutletTemp = 10;
-                            CutletTime = 20;
+                        { CutletTemp = 130;                        // passing temp variable in F
+                            CutletTime = 110 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Rare";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
+
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { CutletTemp = 30;
-                            CutletTime = 40;
+                        {  CutletTemp = 130;
+                            CutletTime = 165 * 60000;
+                            done = "Rare";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {CutletTemp = 50;
-                            CutletTime = 60;
+                        {CutletTemp = 130;
+                            CutletTime = 205 * 60000;
+                            done = "Rare";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {CutletTemp = 70;
-                            CutletTime = 80;}
+                        {CutletTemp = 130;
+                            CutletTime = 270 * 60000;
+                            done = "Rare";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {CutletTemp = 90;
-                            CutletTemp = 100;}
+                        {CutletTemp = 130;
+                            CutletTemp = 340 * 60000;
+                            done = "Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {CutletTemp = 110;
-                            CutletTime = 120;}
+                        {CutletTemp = 135;
+                            CutletTime = 390 * 60000;
+                            done = "Rare";
+                            thick = "3.00 inch / 76 mm";}
                         break;
 
                     case "Medium Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { CutletTemp = 130;
-                            CutletTime = 140;
+                        { CutletTemp = 140;
+                            CutletTime = 110 * 60000;
+                            done = "Medium Rare";
+                            thick = ".50 inch / 13 mm";
                             }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { CutletTemp = 150;
-                            CutletTime = 160;
+                        { CutletTemp = 140;
+                            CutletTime = 165 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.00 inch / 25 mm";
                             }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {CutletTemp = 170;
-                            CutletTime = 180;
+                        {CutletTemp = 140;
+                            CutletTime = 205 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.50 inch / 38 mm";
                             }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {CutletTemp = 190;
-                            CutletTime = 200;}
+                        {CutletTemp = 140;
+                            CutletTime = 270 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {CutletTemp = 210;
-                            CutletTime = 220;}
+                        {CutletTemp = 140;
+                            CutletTime = 340 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {CutletTemp = 230;
-                            CutletTime = 240;}
+                        {CutletTemp = 144;
+                            CutletTime = 390 * 60000;
+                            done = "Medium Rare";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { CutletTemp = 250;
-                            CutletTime = 260;
+                        { CutletTemp = 151;
+                            CutletTime = 110 * 60000;
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { CutletTemp = 270;
-                            CutletTime = 280;
+                        { CutletTemp = 151;
+                            CutletTime = 165 * 60000;
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {CutletTemp = 290;
-                            CutletTime = 300;
+                        {CutletTemp = 144;
+                            CutletTime = 205 * 60000;
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {CutletTemp = 310;
-                            CutletTime = 320;}
+                        {CutletTemp = 144;
+                            CutletTime = 270 * 60000;
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {CutletTemp = 330;
-                            CutletTime = 340;}
+                        {CutletTemp = 144;
+                            CutletTime = 340 * 60000;
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {CutletTemp = 350;
-                            CutletTime = 360;}
+                        {CutletTemp = 144;
+                            CutletTime = 390 * 60000;
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
+
                     case "Medium Well":
                         if (x.equals(".50 inch / 13 mm"))
-                        { CutletTemp = 370;
-                            CutletTime = 380;
+                        { CutletTemp = 155;
+                            CutletTime = 110 * 60000;
+                            done = "Well";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { CutletTemp = 390;
-                            CutletTime = 400;
+                        { CutletTemp = 155;
+                            CutletTime = 165 * 60000;
+                            done = "Well";
+                            thick = "1.00 inch / 25 mm";
+
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {CutletTemp = 410;
-                            CutletTime = 420;
+                        {CutletTemp = 155;
+                            CutletTime = 205 * 60000;
+                            done = "Well";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {CutletTemp = 430;
-                            CutletTime = 440;}
+                        {CutletTemp = 155;
+                            CutletTime = 270 * 60000;
+                            done = "Well";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {CutletTemp = 450;
-                            CutletTime = 460;}
+                        {CutletTemp = 155;
+                            CutletTime = 340 * 60000;
+                            done = "Well";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {CutletTemp = 470;
-                            CutletTime = 480;}
+                        {CutletTemp = 155;
+                            CutletTime = 390 * 60000;
+                            done = "Well";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
-                    case "Well":
-                        if (x.equals(".50 inch / 13 mm"))
-                        { CutletTemp = 490;
-                            CutletTime = 500;
-                        }
-
-                        if (x.equals("1.00 inch / 25 mm"))
-                        { CutletTemp = 510;
-                            CutletTime = 520;
-                        }
-
-                        if (x.equals("1.50 inch / 38 mm"))
-                        {CutletTemp = 530;
-                            CutletTime = 540;
-                        }
-
-                        if (x.equals("2.00 inch / 51 mm"))
-                        {CutletTemp = 550;
-                            CutletTime = 560;}
-
-                        if (x.equals("2.50 inch / 63 mm"))
-                        {CutletTemp = 570;
-                            CutletTime = 580;}
-
-                        if (x.equals("3.00 inch / 76 mm"))
-                        {CutletTemp = 590;
-                            CutletTime = 600;}
-
-                        break;
+                    case "Well Done":
 
 
 
@@ -281,11 +324,102 @@ public class Cutlet extends AppCompatActivity implements View.OnClickListener {
                 //break;
         }
 
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
 
-    }
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(CutletTemp);
+        String chickBreastTime = String.valueOf(CutletTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+        startActivity(example);
+        //notification();
 
 
 
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+        ;
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference("SendData");
+
+
+        sendData =new
+
+                SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(CutletTime);
+        sendData.getTemp(CutletTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+                                                        ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                // inside the method of on Data change we are setting
+                                                                // our object class to our database reference.
+                                                                // data base reference will sends data to firebase.
+                                                                databaseReference.setValue(sendData);
+
+                                                                // after adding this data we are showing toast message.
+                                                                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                                // if the data is not added or it is cancelled then
+                                                                // we are displaying a failure toast message.
+                                                                Toast.makeText(Cutlet.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                                                            }
+
+    });}
 }
 
 

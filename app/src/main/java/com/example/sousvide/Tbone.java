@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Tbone extends AppCompatActivity implements View.OnClickListener {
     private Spinner spinTbone;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,thick, done;
     int TboneTemp, TboneTime;
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
 
 
     @Override
@@ -80,148 +93,220 @@ public class Tbone extends AppCompatActivity implements View.OnClickListener {
                 {
                     case "Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TboneTemp = 10;
-                            TboneTime = 20;
+                        { TboneTemp = 130;                        // passing temp variable in F
+                            TboneTime = 110 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Rare";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
+
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TboneTemp = 30;
-                            TboneTime = 40;
+                        {  TboneTemp = 130;
+                            TboneTime = 165 * 60000;
+                            done = "Rare";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TboneTemp = 50;
-                            TboneTime = 60;
+                        {TboneTemp = 130;
+                            TboneTime = 205 * 60000;
+                            done = "Rare";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TboneTemp = 70;
-                            TboneTime = 80;}
+                        {TboneTemp = 130;
+                            TboneTime = 270 * 60000;
+                            done = "Rare";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TboneTemp = 90;
-                            TboneTemp = 100;}
+                        {TboneTemp = 130;
+                            TboneTemp = 340 * 60000;
+                            done = "Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TboneTemp = 110;
-                            TboneTime = 120;}
+                        {TboneTemp = 135;
+                            TboneTime = 390 * 60000;
+                            done = "Rare";
+                            thick = "3.00 inch / 76 mm";}
                         break;
 
                     case "Medium Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TboneTemp = 130;
-                            TboneTime = 140;
-                            }
+                        { TboneTemp = 140;
+                            TboneTime = 110 * 60000;
+                            done = "Medium Rare";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TboneTemp = 150;
-                            TboneTime = 160;
-                            }
+                        { TboneTemp = 140;
+                            TboneTime = 165 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.00 inch / 25 mm";
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TboneTemp = 170;
-                            TboneTime = 180;
-                            }
+                        {TboneTemp = 140;
+                            TboneTime = 205 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TboneTemp = 190;
-                            TboneTime = 200;}
+                        {TboneTemp = 140;
+                            TboneTime = 270 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TboneTemp = 210;
-                            TboneTime = 220;}
+                        {TboneTemp = 140;
+                            TboneTime = 340 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TboneTemp = 230;
-                            TboneTime = 240;}
+                        {TboneTemp = 144;
+                            TboneTime = 390 * 60000;
+                            done = "Medium Rare";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TboneTemp = 250;
-                            TboneTime = 260;
+                        { TboneTemp = 151;
+                            TboneTime = 110 * 60000;
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TboneTemp = 270;
-                            TboneTime = 280;
+                        { TboneTemp = 151;
+                            TboneTime = 165 * 60000;
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TboneTemp = 290;
-                            TboneTime = 300;
+                        {TboneTemp = 144;
+                            TboneTime = 205 * 60000;
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TboneTemp = 310;
-                            TboneTime = 320;}
+                        {TboneTemp = 144;
+                            TboneTime = 270 * 60000;
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TboneTemp = 330;
-                            TboneTime = 340;}
+                        {TboneTemp = 144;
+                            TboneTime = 340 * 60000;
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TboneTemp = 350;
-                            TboneTime = 360;}
+                        {TboneTemp = 144;
+                            TboneTime = 390 * 60000;
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
+
                     case "Medium Well":
                         if (x.equals(".50 inch / 13 mm"))
-                        { TboneTemp = 370;
-                            TboneTime = 380;
+                        { TboneTemp = 155;
+                            TboneTime = 110 * 60000;
+                            done = "Well";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TboneTemp = 390;
-                            TboneTime = 400;
+                        { TboneTemp = 155;
+                            TboneTime = 165 * 60000;
+                            done = "Well";
+                            thick = "1.00 inch / 25 mm";
+
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TboneTemp = 410;
-                            TboneTime = 420;
+                        {TboneTemp = 155;
+                            TboneTime = 205 * 60000;
+                            done = "Well";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TboneTemp = 430;
-                            TboneTime = 440;}
+                        {TboneTemp = 155;
+                            TboneTime = 270 * 60000;
+                            done = "Well";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TboneTemp = 450;
-                            TboneTime = 460;}
+                        {TboneTemp = 155;
+                            TboneTime = 340 * 60000;
+                            done = "Well";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TboneTemp = 470;
-                            TboneTime = 480;}
+                        {TboneTemp = 155;
+                            TboneTime = 390 * 60000;
+                            done = "Well";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
-                    case "Well":
+                    case "Well Done":
+
                         if (x.equals(".50 inch / 13 mm"))
-                        { TboneTemp = 490;
-                            TboneTime = 500;
+                        { TboneTemp = 160;
+                            TboneTime = 110 * 60000;
+                            done = "Well Done";
+                            thick = ".50 inch / 13 mm";
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { TboneTemp = 510;
-                            TboneTime = 520;
+                        { TboneTemp = 160;
+                            TboneTime = 165 * 60000;
+                            done = "Well Done";
+                            thick = "1.00 inch / 25 mm";
+
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {TboneTemp = 530;
-                            TboneTime = 540;
+                        {TboneTemp = 160;
+                            TboneTime = 205 * 60000;
+                            done = "Well Done";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {TboneTemp = 550;
-                            TboneTime = 560;}
+                        {TboneTemp = 160;
+                            TboneTime = 270 * 60000;
+                            done = "Well Done";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {TboneTemp = 570;
-                            TboneTime = 580;}
+                        {TboneTemp = 160;
+                            TboneTime = 340 * 60000;
+                            done = "Well Done";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {TboneTemp = 590;
-                            TboneTime = 600;}
+                        {TboneTemp = 160;
+                            TboneTime = 390 * 60000;
+                            done = "Well Done";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
@@ -281,6 +366,104 @@ public class Tbone extends AppCompatActivity implements View.OnClickListener {
                 startActivity(ChickBreastintent);
                 //break;
         }
+
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
+
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(TboneTemp);
+        String chickBreastTime = String.valueOf(TboneTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+        startActivity(example);
+        //notification();
+
+
+
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+        ;
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference("SendData");
+
+
+        sendData =new
+
+                SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(TboneTime);
+        sendData.getTemp(TboneTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+                                                        ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                // inside the method of on Data change we are setting
+                                                                // our object class to our database reference.
+                                                                // data base reference will sends data to firebase.
+                                                                databaseReference.setValue(sendData);
+
+                                                                // after adding this data we are showing toast message.
+                                                                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                                // if the data is not added or it is cancelled then
+                                                                // we are displaying a failure toast message.
+                                                                Toast.makeText(Tbone.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                                                            }
+
+
+                                                        });
 
 
     }

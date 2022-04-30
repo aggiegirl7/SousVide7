@@ -8,13 +8,19 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SousVide"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true">
+        android:theme="@style/Theme.SousVide">
+        <activity
+            android:name=".EggCookDisplay"
+            android:exported="false" />
+        <activity
+            android:name=".Tilapia"
+            android:exported="false" />
         <activity
             android:name=".databasetest"
             android:exported="false" />
@@ -37,7 +43,7 @@
             android:name=".Salmon"
             android:exported="false" />
         <activity
-            android:name=".Tilapia"
+            android:name=".Catfish"
             android:exported="false" />
         <activity
             android:name=".GeneralFish"

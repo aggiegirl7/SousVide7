@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             public void openWifiCheck() {
-                Intent intent = new Intent(this, ChickBreastBone.class);
+                Intent intent = new Intent(this, WifiCheck.class);
                 startActivity(intent);
             }
         }

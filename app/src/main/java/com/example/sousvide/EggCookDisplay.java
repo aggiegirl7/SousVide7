@@ -1,35 +1,27 @@
 package com.example.sousvide;
 
-import android.app.Application;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.Image;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.renderscript.Sampler;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,10 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-//package com.example.firebase;
-
-public class DisplayPreset extends AppCompatActivity {
-
+public class EggCookDisplay extends AppCompatActivity {
     private TextView alertTextView;
     private int foodFinish =0;
     int firstGood = 0;
@@ -76,7 +65,7 @@ public class DisplayPreset extends AppCompatActivity {
 
 
     //start time for timer
-     long START_TIME_IN_MILLIS ;
+    long START_TIME_IN_MILLIS ;
 
 
 
@@ -101,13 +90,13 @@ public class DisplayPreset extends AppCompatActivity {
             case R.id.checkCon:
 
 
-                if (isConnectedTo("0c17da", DisplayPreset.this)) {
-                    Toast.makeText(DisplayPreset.this, "\n Class: \t " + "You're still connected!", Toast.LENGTH_LONG).show();
+                if (isConnectedTo("0c17da", EggCookDisplay.this)) {
+                    Toast.makeText(EggCookDisplay.this, "\n Class: \t " + "You're still connected!", Toast.LENGTH_LONG).show();
 
                     //Call into other class
                     //openFoodChooser();
                 } else {
-                    Toast.makeText(DisplayPreset.this, "\n Class: \t " + "You are not connected to the correct wifi, please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EggCookDisplay.this, "\n Class: \t " + "You are not connected to the correct wifi, please try again.", Toast.LENGTH_LONG).show();
                 }
         }}
 
@@ -116,7 +105,7 @@ public class DisplayPreset extends AppCompatActivity {
     //push notification for low water
     private void notification() {
 
-        //Intent intent = new Intent(this, DisplayPreset.class);
+        //Intent intent = new Intent(this, EggCookDisplay.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -134,12 +123,12 @@ public class DisplayPreset extends AppCompatActivity {
         NotificationManager notifyMgr = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notifyMgr.notify(notificationID, builder.build());
-        //Toast.makeText(DisplayPreset.this, "Notification()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(EggCookDisplay.this, "Notification()", Toast.LENGTH_LONG).show();
     }
     //push notification overheating
     private void notification2() {
 
-        //Intent intent = new Intent(this, DisplayPreset.class);
+        //Intent intent = new Intent(this, EggCookDisplay.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -157,12 +146,12 @@ public class DisplayPreset extends AppCompatActivity {
         NotificationManager notifyMgr = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notifyMgr.notify(notificationID, builder.build());
-       // Toast.makeText(DisplayPreset.this, "Notification2()", Toast.LENGTH_LONG).show();
+        // Toast.makeText(EggCookDisplay.this, "Notification2()", Toast.LENGTH_LONG).show();
     }
     // under value
     private void notification3() {
 
-        //Intent intent = new Intent(this, DisplayPreset.class);
+        //Intent intent = new Intent(this, EggCookDisplay.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -180,12 +169,12 @@ public class DisplayPreset extends AppCompatActivity {
         NotificationManager notifyMgr = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notifyMgr.notify(notificationID, builder.build());
-        //Toast.makeText(DisplayPreset.this, "Notification3()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(EggCookDisplay.this, "Notification3()", Toast.LENGTH_LONG).show();
     }
     //Preheat Done
     private void notification4() {
 
-        //Intent intent = new Intent(this, DisplayPreset.class);
+        //Intent intent = new Intent(this, EggCookDisplay.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -203,12 +192,12 @@ public class DisplayPreset extends AppCompatActivity {
         NotificationManager notifyMgr = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notifyMgr.notify(notificationID, builder.build());
-        //Toast.makeText(DisplayPreset.this, "Notification()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(EggCookDisplay.this, "Notification()", Toast.LENGTH_LONG).show();
     }
 
     private void notification5() {
 
-        //Intent intent = new Intent(this, DisplayPreset.class);
+        //Intent intent = new Intent(this, EggCookDisplay.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -227,7 +216,7 @@ public class DisplayPreset extends AppCompatActivity {
         NotificationManager notifyMgr = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notifyMgr.notify(notificationID, builder.build());
-        //Toast.makeText(DisplayPreset.this, "Notification()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(EggCookDisplay.this, "Notification()", Toast.LENGTH_LONG).show();
     }
 
 
@@ -301,7 +290,7 @@ public class DisplayPreset extends AppCompatActivity {
         textView2.setText("" + thick);
         textView1.setText("" + done);
         START_TIME_IN_MILLIS = Long.parseLong(time);*/
-       // ((MyApp) this.get()).setSomeVar(time);
+        // ((MyApp) this.get()).setSomeVar(time);
 
         /*class MyApp extends Application {
             privagte String someVar;
@@ -350,8 +339,8 @@ public class DisplayPreset extends AppCompatActivity {
 
                             notification();
 
-                            Toast.makeText(DisplayPreset.this, "" + value2.toString(), Toast.LENGTH_LONG).show();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(DisplayPreset.this);
+                            Toast.makeText(EggCookDisplay.this, "" + value2.toString(), Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EggCookDisplay.this);
 
                             builder.setCancelable(true);
                             builder.setTitle("Warning!");
@@ -382,111 +371,111 @@ public class DisplayPreset extends AppCompatActivity {
                     }
                 });
 
-            DatabaseReference reference1 = firebaseDatabase.getReference();
-            reference1.child("data")
-                    .addValueEventListener(new ValueEventListener() {
-                        @RequiresApi(api = Build.VERSION_CODES.O)
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
-                            Iterable<DataSnapshot> children = dataSnapshot2.getChildren();
-                            //for(DataSnapshot child: children)
-                            //{
-                            checkImg = findViewById(R.id.checkpreheat);
-                            int imgRes = 0;
+        DatabaseReference reference1 = firebaseDatabase.getReference();
+        reference1.child("data")
+                .addValueEventListener(new ValueEventListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
+                        Iterable<DataSnapshot> children = dataSnapshot2.getChildren();
+                        //for(DataSnapshot child: children)
+                        //{
+                        checkImg = findViewById(R.id.checkpreheat);
+                        int imgRes = 0;
 
-                            Integer value = dataSnapshot2.getValue(Integer.class);
-                           int x = Integer.valueOf(temp) - 30;
-                           int y = Integer.valueOf(temp)+ 30;
-                            AlertDialog.Builder builder3 = new AlertDialog.Builder(DisplayPreset.this);
-
-
-                           if((value > Integer.valueOf((temp))-5) && (Preheat == 0)){
-                               imgRes = R.drawable.check;
+                        Integer value = dataSnapshot2.getValue(Integer.class);
+                        int x = Integer.valueOf(temp) - 30;
+                        int y = Integer.valueOf(temp)+ 30;
+                        AlertDialog.Builder builder3 = new AlertDialog.Builder(EggCookDisplay.this);
 
 
-                               notification4(); //preheat done push notification
-                                //preheat done IN APP notif
-                               Preheat = 1;
+                        if((value > Integer.valueOf((temp))-5) && (Preheat == 0)){
+                            imgRes = R.drawable.check;
 
 
-                                   builder3.setCancelable(true);
-                                   builder3.setTitle("Preheat Finished!");
-                                   builder3.setMessage("Please insert your vacuum sealed food into the bath and press Start to start your timer.");
-
-                               Toast.makeText(DisplayPreset.this, "" + Preheat, Toast.LENGTH_LONG).show();
-
-                               builder3.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                   @Override
-                                   public void onClick(DialogInterface dialog, int which) {
-                                       dialog.cancel();
-                                   }
-                               });
-
-                               builder3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                   @Override
-                                   public void onClick(DialogInterface dialog, int which) {
-                                       //alertTextView.setVisibility(View.VISIBLE);
-                                   }
-                               });
-                               builder3.show();
-                           }
+                            notification4(); //preheat done push notification
+                            //preheat done IN APP notif
+                            Preheat = 1;
 
 
-                           else if (value < Integer.valueOf(temp)) {
-                           imgRes = R.drawable.x;
-                           }
-                            checkImg.setImageResource(imgRes);
-                            //take in the temperature and sets the firstGood value to 1 during preheat
-                            //then if temp dips 30 below or 30 above the set temperature then send notification
-                            if (value > Integer.valueOf(temp)-5 && firstGood == 0)
-                                {firstGood = 1;
+                            builder3.setCancelable(true);
+                            builder3.setTitle("Preheat Finished!");
+                            builder3.setMessage("Please insert your vacuum sealed food into the bath and press Start to start your timer.");
 
-                                Toast.makeText(DisplayPreset.this, "first good" + firstGood, Toast.LENGTH_LONG).show();
-                            }
+                            Toast.makeText(EggCookDisplay.this, "" + Preheat, Toast.LENGTH_LONG).show();
 
-                            else if (((value <= x) || (value >= y) )&& (firstGood == 1)) {
+                            builder3.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            builder3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //alertTextView.setVisibility(View.VISIBLE);
+                                }
+                            });
+                            builder3.show();
+                        }
+
+
+                        else if (value < Integer.valueOf(temp)) {
+                            imgRes = R.drawable.x;
+                        }
+                        checkImg.setImageResource(imgRes);
+                        //take in the temperature and sets the firstGood value to 1 during preheat
+                        //then if temp dips 30 below or 30 above the set temperature then send notification
+                        if (value > Integer.valueOf(temp)-5 && firstGood == 0)
+                        {firstGood = 1;
+
+                            Toast.makeText(EggCookDisplay.this, "first good" + firstGood, Toast.LENGTH_LONG).show();
+                        }
+
+                        else if (((value <= x) || (value >= y) )&& (firstGood == 1)) {
 
 
 
 
-                                Toast.makeText(DisplayPreset.this, "" + value.toString(), Toast.LENGTH_LONG).show();
-                                AlertDialog.Builder builder = new AlertDialog.Builder(DisplayPreset.this);
-                                AlertDialog.Builder builder5 = new AlertDialog.Builder(DisplayPreset.this);
-                                if (value >Integer.valueOf(temp)+30)
-                                {
-                                    notification2();
-                                    builder.setCancelable(true);
+                            Toast.makeText(EggCookDisplay.this, "" + value.toString(), Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EggCookDisplay.this);
+                            AlertDialog.Builder builder5 = new AlertDialog.Builder(EggCookDisplay.this);
+                            if (value >Integer.valueOf(temp)+30)
+                            {
+                                notification2();
+                                builder.setCancelable(true);
                                 builder.setTitle("Warning!");
                                 builder.setMessage("System is overheating, please unplug.");
 
 
-                                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
 
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            //alertTextView.setVisibility(View.VISIBLE);
-                                        }
-                                    });
-                                    builder.show();}
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //alertTextView.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                                builder.show();}
 
-                                if(value >Integer.valueOf(temp)-5){
+                            if(value >Integer.valueOf(temp)-5){
                                 Preheat = 1;
-                                Toast.makeText(DisplayPreset.this, "Preheat" + Preheat, Toast.LENGTH_LONG).show();
+                                Toast.makeText(EggCookDisplay.this, "Preheat" + Preheat, Toast.LENGTH_LONG).show();
                             }
 
-                                if((value<Integer.valueOf(temp)-30) && Preheat ==1)
+                            if((value<Integer.valueOf(temp)-30) && Preheat ==1)
 
-                                {notification3();
+                            {notification3();
 
-                                    builder5.setCancelable(true);
-                                    builder5.setTitle("Warning!");
-                                    builder5.setMessage("System is not heating properly, food may be unsafe to eat. Please unplug.");
+                                builder5.setCancelable(true);
+                                builder5.setTitle("Warning!");
+                                builder5.setMessage("System is not heating properly, food may be unsafe to eat. Please unplug.");
 
                                 builder5.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                     @Override
@@ -503,15 +492,15 @@ public class DisplayPreset extends AppCompatActivity {
                                 });
                                 builder5.show();}
 
-                            }}
-                            //}
+                        }}
+                    //}
 
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+                    }
+                });
 
 
 
@@ -546,13 +535,13 @@ public class DisplayPreset extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                Toast.makeText(DisplayPreset.this, "Finished!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EggCookDisplay.this, "Finished!", Toast.LENGTH_SHORT).show();
                 updateButtons();
 
                 notification5();
 
-                //Toast.makeText(DisplayPreset.this, "" + value2.toString(), Toast.LENGTH_LONG).show();
-                AlertDialog.Builder builder = new AlertDialog.Builder(DisplayPreset.this);
+                //Toast.makeText(EggCookDisplay.this, "" + value2.toString(), Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(EggCookDisplay.this);
 
                 builder.setCancelable(true);
                 builder.setTitle("Your food is done!");
@@ -595,7 +584,7 @@ public class DisplayPreset extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                         // if the data is not added or it is cancelled then
                         // we are displaying a failure toast message.
-                        Toast.makeText(DisplayPreset.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EggCookDisplay.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
                     }
                 });
                 //sends finished variable to 1 so mcu knows to stop
@@ -615,7 +604,7 @@ public class DisplayPreset extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                         // if the data is not added or it is cancelled then
                         // we are displaying a failure toast message.
-                        Toast.makeText(DisplayPreset.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EggCookDisplay.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
                     }
                 });*/
 
@@ -640,27 +629,27 @@ public class DisplayPreset extends AppCompatActivity {
     }
 
     private void updateCountDownText() {
-        Toast.makeText(DisplayPreset.this, "timefirst" + timeFirst, Toast.LENGTH_LONG).show();
+        Toast.makeText(EggCookDisplay.this, "timefirst" + timeFirst, Toast.LENGTH_LONG).show();
         if (timeFirst == 0)
         {
             mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+            int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+            int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
 
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTextViewCountDown.setText(timeLeftFormatted);
-        timeFirst = 1;
-    }
-    else if (timeFirst ==1)
-    {
-        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+            mTextViewCountDown.setText(timeLeftFormatted);
+            timeFirst = 1;
+        }
+        else if (timeFirst ==1)
+        {
+            int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+            int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
 
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }}
+            mTextViewCountDown.setText(timeLeftFormatted);
+        }}
     private void updateButtons() {
         if (mTimerRunning) {
             mButtonReset.setVisibility(View.INVISIBLE);
@@ -744,7 +733,7 @@ public class DisplayPreset extends AppCompatActivity {
             NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
             managerCompat.notify(999, builder.build());
             Log.i("bro", "Notification()");
-            Toast.makeText(DisplayPreset.this, "Notification()", Toast.LENGTH_LONG).show();
+            Toast.makeText(EggCookDisplay.this, "Notification()", Toast.LENGTH_LONG).show();
 
 
         }}*/
@@ -754,7 +743,7 @@ public class DisplayPreset extends AppCompatActivity {
 
 
 
-        private void getdata() {
+    private void getdata() {
 
         // calling add value event listener method
         // for getting the values from database.
@@ -801,7 +790,7 @@ public class DisplayPreset extends AppCompatActivity {
 
         //ArrayList<String> list = new ArrayList<>();
         //ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list_item)
-        }
+    }
 
     public boolean isConnectedTo(String ssid, Context context) {
         boolean retVal = false;
@@ -832,4 +821,4 @@ public class DisplayPreset extends AppCompatActivity {
         return retVal;
 
     }
-    }
+}

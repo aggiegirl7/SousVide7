@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class ChickThighBone extends AppCompatActivity implements View.OnClickListener{
     Spinner spinChickThighBone;
     Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x, done,thick;
     int ChickThighBoneTemp, ChickThighBoneTime;
 
 
@@ -77,106 +77,151 @@ public class ChickThighBone extends AppCompatActivity implements View.OnClickLis
 
                 switch(selectedDiv)
                 {
+
                     case "Lowest Time/ Juicy":
                         if (x.equals(".50 inch / 13 mm"))
-                        { ChickThighBoneTemp = 10;
-                            ChickThighBoneTime = 20;
+                        {
+                            ChickThighBoneTemp = 140;                        // passing temp variable in F
+                            ChickThighBoneTime = 65 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Lowest Time/ Juicy";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
+
                         }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { ChickThighBoneTemp = 30;
-                            ChickThighBoneTime = 40;
+                        { ChickThighBoneTemp = 140;
+                            ChickThighBoneTime = 115*60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "1.00 inch / 25 mm";
                         }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {ChickThighBoneTemp = 50;
-                            ChickThighBoneTime = 60;
+                        {ChickThighBoneTemp = 140;
+                            ChickThighBoneTime = 170*60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "1.50 inch / 38 mm";
                         }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {ChickThighBoneTemp = 70;
-                            ChickThighBoneTime = 80;}
+                        {ChickThighBoneTemp = 140;
+                            ChickThighBoneTime = 220*60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {ChickThighBoneTemp = 90;
-                            ChickThighBoneTemp = 100;}
+                        {ChickThighBoneTemp = 140;
+                            ChickThighBoneTemp = 285*60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBoneTemp = 110;
-                            ChickThighBoneTime = 120;}
+                            ChickThighBoneTemp = 140;
+                            ChickThighBoneTime = 350*60000;
+                            done = "Lowest Time/ Juicy";
+                            thick = "3.00 inch / 76 mm";}
                         break;
 
                     case "Medium Time/ Medium Cook":
                         if (x.equals(".50 inch / 13 mm")) {
-                            ChickThighBoneTemp = 130;
-                            ChickThighBoneTime = 140;
+                            ChickThighBoneTemp = 147;
+                            ChickThighBoneTime = 45*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = ".50 inch / 13 mm";
 
                         }
 
                         if (x.equals("1.00 inch / 25 mm")) {
-                            ChickThighBoneTemp = 150;
-                            ChickThighBoneTime = 160;
+                            ChickThighBoneTemp = 147;
+                            ChickThighBoneTime = 95*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "1.00 inch / 25 mm";
 
                         }
 
                         if (x.equals("1.50 inch / 38 mm")) {
-                            ChickThighBoneTemp =170;
-                            ChickThighBoneTime = 180;
+                            ChickThighBoneTemp =147;
+                            ChickThighBoneTime = 135*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "1.50 inch / 38 mm";
 
                         }
 
                         if (x.equals("2.00 inch / 51 mm")) {
-                            ChickThighBoneTemp = 190;
-                            ChickThighBoneTime = 200;
+                            ChickThighBoneTemp = 147;
+                            ChickThighBoneTime = 175*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "2.00 inch / 51 mm";
                         }
 
                         if (x.equals("2.50 inch / 63 mm")) {
-                            ChickThighBoneTemp = 210;
-                            ChickThighBoneTime = 220;
+                            ChickThighBoneTemp = 147;
+                            ChickThighBoneTime = 235*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "2.50 inch / 63 mm";
                         }
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBoneTemp = 230;
-                            ChickThighBoneTime = 240;
+                            ChickThighBoneTemp = 147;
+                            ChickThighBoneTime = 275*60000;
+                            done = "Medium Time/ Medium Cook";
+                            thick = "3.00 inch / 76 mm";
                         }
 
                         break;
                     case "Highest Time/ Thorough Cook":
                         if (x.equals(".50 inch / 13 mm")) {
-                            ChickThighBoneTemp = 250;
-                            ChickThighBoneTime = 260;
+                            ChickThighBoneTemp = 175;
+                            ChickThighBoneTime = 20*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = ".50 inch / 13 mm";
 
                         }
 
                         if (x.equals("1.00 inch / 25 mm")) {
-                            ChickThighBoneTemp = 270;
-                            ChickThighBoneTime = 280;
+                            ChickThighBoneTemp = 155;
+                            ChickThighBoneTime = 80*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "1.00 inch / 25 mm";
 
                         }
 
                         if (x.equals("1.50 inch / 38 mm")) {
-                            ChickThighBoneTemp = 290;
-                            ChickThighBoneTime = 300;
+                            ChickThighBoneTemp = 155;
+                            ChickThighBoneTime = 120*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "1.50 inch / 38 mm";
 
                         }
 
                         if (x.equals("2.00 inch / 51 mm")) {
-                            ChickThighBoneTemp = 310;
-                            ChickThighBoneTime = 320;
+                            ChickThighBoneTemp = 155;
+
+                            ChickThighBoneTime = 185*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "2.00 inch / 51 mm";
                         }
 
                         if (x.equals("2.50 inch / 63 mm")) {
-                            ChickThighBoneTemp = 330;
-                            ChickThighBoneTime = 340;
+                            ChickThighBoneTemp =155 ;
+                            ChickThighBoneTime = 215*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "2.50 inch / 63 mm";
                         }
 
                         if (x.equals("3.00 inch / 76 mm")) {
-                            ChickThighBoneTemp = 350;
-                            ChickThighBoneTime = 360;
+                            ChickThighBoneTemp = 155;
+                            ChickThighBoneTime = 260*60000;
+                            done = "Highest Time/ Thorough Cook";
+                            thick = "3.00 inch / 76 mm";
                         }
 
 
                         break;
+
+
 
 
                 }

@@ -1,5 +1,6 @@
 package com.example.sousvide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,11 +12,25 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Sirloin extends AppCompatActivity implements View.OnClickListener{
     private Spinner spinSirloin;
     private Spinner spinTimeCook;
-    String selectedDiv, selectedClass, booyah, booyah1,x;
+    String selectedDiv, selectedClass, booyah, booyah1,x,thick,done;
     int SirloinTemp, SirloinTime;
+
+
+    FirebaseDatabase firebaseDatabase;
+
+    DatabaseReference databaseReference;
+
+    SendData sendData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,148 +116,220 @@ public class Sirloin extends AppCompatActivity implements View.OnClickListener{
                 {
                     case "Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SirloinTemp = 10;
-                            SirloinTime = 20;
-                            }
+                        { SirloinTemp = 130;                        // passing temp variable in F
+                            SirloinTime = 110 * 60000;//6600000;
+                            //passing variable in minutes
+                            done = "Rare";
+                            //will pass string to show user "doneness" selection
+                            thick = ".50 inch/ 13 mm";
+                            //will pass string to show user "thickness" selection
+
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SirloinTemp = 30;
-                            SirloinTime = 40;
-                            }
+                        {  SirloinTemp = 130;
+                            SirloinTime = 165 * 60000;
+                            done = "Rare";
+                            thick = "1.00 inch / 25 mm";
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SirloinTemp = 50;
-                            SirloinTime = 60;
-                            }
+                        {SirloinTemp = 130;
+                            SirloinTime = 205 * 60000;
+                            done = "Rare";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SirloinTemp = 70;
-                            SirloinTime = 80;}
+                        {SirloinTemp = 130;
+                            SirloinTime = 270 * 60000;
+                            done = "Rare";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SirloinTemp = 90;
-                            SirloinTemp = 100;}
+                        {SirloinTemp = 130;
+                            SirloinTemp = 340 * 60000;
+                            done = "Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SirloinTemp = 110;
-                            SirloinTime = 120;}
+                        {SirloinTemp = 135;
+                            SirloinTime = 390 * 60000;
+                            done = "Rare";
+                            thick = "3.00 inch / 76 mm";}
                         break;
 
                     case "Medium Rare":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SirloinTemp = 130;
-                            SirloinTime = 140;
-                            booyah = "ow ow med rare";}
+                        { SirloinTemp = 140;
+                            SirloinTime = 110 * 60000;
+                            done = "Medium Rare";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SirloinTemp = 150;
-                            SirloinTime = 160;
-                            booyah = "bow chicka med rare";}
+                        { SirloinTemp = 140;
+                            SirloinTime = 165 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.00 inch / 25 mm";
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SirloinTemp = 170;
-                            SirloinTime = 180;
-                            booyah = "u got this med rare";}
+                        {SirloinTemp = 140;
+                            SirloinTime = 205 * 60000;
+                            done = "Medium Rare";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SirloinTemp = 190;
-                            SirloinTime = 200;}
+                        {SirloinTemp = 140;
+                            SirloinTime = 270 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SirloinTemp = 210;
-                            SirloinTime = 220;}
+                        {SirloinTemp = 140;
+                            SirloinTime = 340 * 60000;
+                            done = "Medium Rare";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SirloinTemp = 230;
-                            SirloinTime = 240;}
+                        {SirloinTemp = 144;
+                            SirloinTime = 390 * 60000;
+                            done = "Medium Rare";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
                     case "Medium":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SirloinTemp = 250;
-                            SirloinTime = 260;
-                            }
+                        { SirloinTemp = 151;
+                            SirloinTime = 110 * 60000;
+                            done = "Medium";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SirloinTemp = 270;
-                            SirloinTime = 280;
-                            }
+                        { SirloinTemp = 151;
+                            SirloinTime = 165 * 60000;
+                            done = "Medium";
+                            thick = "1.00 inch / 25 mm";
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SirloinTemp = 290;
-                            SirloinTime = 300;
-                            }
+                        {SirloinTemp = 144;
+                            SirloinTime = 205 * 60000;
+                            done = "Medium";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SirloinTemp = 310;
-                            SirloinTime = 320;}
+                        {SirloinTemp = 144;
+                            SirloinTime = 270 * 60000;
+                            done = "Medium";
+                            thick = "2.00 inch / 51 mm";
+                        }
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SirloinTemp = 330;
-                            SirloinTime = 340;}
+                        {SirloinTemp = 144;
+                            SirloinTime = 340 * 60000;
+                            done = "Medium";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SirloinTemp = 350;
-                            SirloinTime = 360;}
+                        {SirloinTemp = 144;
+                            SirloinTime = 390 * 60000;
+                            done = "Medium";
+                            thick = "3.00 inch / 76 mm";
+                        }
 
                         break;
+
                     case "Medium Well":
                         if (x.equals(".50 inch / 13 mm"))
-                        { SirloinTemp = 370;
-                            SirloinTime = 380;
-                            }
+                        { SirloinTemp = 155;
+                            SirloinTime = 110 * 60000;
+                            done = "Well";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SirloinTemp = 390;
-                            SirloinTime = 400;
-                            }
+                        { SirloinTemp = 155;
+                            SirloinTime = 165 * 60000;
+                            done = "Well";
+                            thick = "1.00 inch / 25 mm";
+
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SirloinTemp = 410;
-                            SirloinTime = 420;
-                            }
+                        {SirloinTemp = 155;
+                            SirloinTime = 205 * 60000;
+                            done = "Well";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SirloinTemp = 430;
-                            SirloinTime = 440;}
+                        {SirloinTemp = 155;
+                            SirloinTime = 270 * 60000;
+                            done = "Well";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SirloinTemp = 450;
-                            SirloinTime = 460;}
+                        {SirloinTemp = 155;
+                            SirloinTime = 340 * 60000;
+                            done = "Well";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SirloinTemp = 470;
-                            SirloinTime = 480;}
+                        {SirloinTemp = 155;
+                            SirloinTime = 390 * 60000;
+                            done = "Well";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
-                    case "Well":
+                    case "Well Done":
+
                         if (x.equals(".50 inch / 13 mm"))
-                        { SirloinTemp = 490;
-                            SirloinTime = 500;
-                            }
+                        { SirloinTemp = 160;
+                            SirloinTime = 110 * 60000;
+                            done = "Well Done";
+                            thick = ".50 inch / 13 mm";
+                        }
 
                         if (x.equals("1.00 inch / 25 mm"))
-                        { SirloinTemp = 510;
-                            SirloinTime = 520;
-                            }
+                        { SirloinTemp = 160;
+                            SirloinTime = 165 * 60000;
+                            done = "Well Done";
+                            thick = "1.00 inch / 25 mm";
+
+                        }
 
                         if (x.equals("1.50 inch / 38 mm"))
-                        {SirloinTemp = 530;
-                            SirloinTime = 540;
-                            }
+                        {SirloinTemp = 160;
+                            SirloinTime = 205 * 60000;
+                            done = "Well Done";
+                            thick = "1.50 inch / 38 mm";
+                        }
 
                         if (x.equals("2.00 inch / 51 mm"))
-                        {SirloinTemp = 550;
-                            SirloinTime = 560;}
+                        {SirloinTemp = 160;
+                            SirloinTime = 270 * 60000;
+                            done = "Well Done";
+                            thick = "2.00 inch / 51 mm";}
 
                         if (x.equals("2.50 inch / 63 mm"))
-                        {SirloinTemp = 570;
-                            SirloinTime = 580;}
+                        {SirloinTemp = 160;
+                            SirloinTime = 340 * 60000;
+                            done = "Well Done";
+                            thick = "2.50 inch / 63 mm";}
 
                         if (x.equals("3.00 inch / 76 mm"))
-                        {SirloinTemp = 590;
-                            SirloinTime = 600;}
+                        {SirloinTemp = 160;
+                            SirloinTime = 390 * 60000;
+                            done = "Well Done";
+                            thick = "3.00 inch / 76 mm";}
 
                         break;
 
@@ -303,11 +390,109 @@ public class Sirloin extends AppCompatActivity implements View.OnClickListener{
                 //break;
         }
 
+        Intent example = new Intent(getApplicationContext(), DisplayPreset.class);
+        //ChickBreastBoneTemp = 137;
+        // passing temp variable in F
+        //ChickBreastBoneTime = 110;
+
+        String doneVar = String.valueOf(done);
+        String thickVar = String.valueOf(thick);
+        String chickBreastTemp = String.valueOf(SirloinTemp);
+        String chickBreastTime = String.valueOf(SirloinTime);
+
+        example.putExtra("message", doneVar);
+        example.putExtra("message2", thickVar);
+        example.putExtra("message3", chickBreastTemp);
+        example.putExtra("message4", chickBreastTime);
+
+        startActivity(example);
+        //notification();
+
+
+
+                /*RequestBody formBody = new FormBody.Builder()
+                        .add("ChickBreastBoneTemp", "350")
+                        .add("ChickBreastBoneTime", "110")
+                        .build();
+//http://192.168.4.1/temperature
+                Request request = new Request.Builder()
+                        .url("http://192.168.4.1/temperature")
+                        .post(formBody)
+                        .build();
+
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                        if(response.isSuccessful()){
+                            ResponseBody responseBody = response.body();
+                            Log.i("bro", "posted! 23" );
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                        Log.i("bro", "nada 23");
+                    }
+                });*/
+
+
+
+
+        ;
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference =firebaseDatabase.getReference("SendData");
+
+
+        sendData =new
+
+                SendData();
+        // Integer testTemp = 20;
+        //Integer testTime = 50;
+
+        //private void addDatatoFirebase(int testTemp, int testTime) {
+        // below 3 lines of code is used to set
+        // data in our object class.
+        sendData.getTime(SirloinTime);
+        sendData.getTemp(SirloinTemp);
+
+
+        // we are use add value event listener method
+        // which is called with database reference.
+        databaseReference.addValueEventListener(new
+
+                                                        ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                // inside the method of on Data change we are setting
+                                                                // our object class to our database reference.
+                                                                // data base reference will sends data to firebase.
+                                                                databaseReference.setValue(sendData);
+
+                                                                // after adding this data we are showing toast message.
+                                                                // Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                                // if the data is not added or it is cancelled then
+                                                                // we are displaying a failure toast message.
+                                                                Toast.makeText(Sirloin.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                                                            }
+
+
+                                                        });}
+
 
     }
 
 
 
-}
+
 
 

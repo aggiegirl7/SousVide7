@@ -22,7 +22,9 @@ public class TypeFishCook extends AppCompatActivity implements View.OnClickListe
         ImageButton SalmonPic = findViewById(R.id.SalmonPic);
         Button SalmonButton = findViewById(R.id.SalmonButton);
         ImageButton TunaPic = findViewById(R.id.TunaPic);
-        Button TunaButton = findViewById(R.id.TunaButton);
+        Button TunaButton = findViewById(R.id.tunaButton);
+        ImageButton CatfishPic = findViewById(R.id.catfishPic);
+        Button  CatfishButton = findViewById(R.id.catfishButton);
 
         GeneralFishPic.setOnClickListener(this);
         GeneralFishButton.setOnClickListener(this);
@@ -32,6 +34,8 @@ public class TypeFishCook extends AppCompatActivity implements View.OnClickListe
         SalmonButton.setOnClickListener(this);
         TunaPic.setOnClickListener(this);
         TunaButton.setOnClickListener(this);
+        CatfishPic.setOnClickListener(this);
+        CatfishButton.setOnClickListener(this);
 
     }
 
@@ -51,9 +55,12 @@ public class TypeFishCook extends AppCompatActivity implements View.OnClickListe
                 openSalmon();
                 break;
             case R.id.TunaPic:
-            case R.id.TunaButton:
+            case R.id.tunaButton:
                 openTuna();
                 break;
+            case R.id.catfishPic:
+            case R.id.catfishButton:
+                openCatfish();
 
         }
     }
@@ -75,6 +82,10 @@ public class TypeFishCook extends AppCompatActivity implements View.OnClickListe
 
     public void openTuna() {
         Intent intent = new Intent(this, Tuna.class);
+        startActivity(intent);
+    }
+    public void openCatfish() {
+        Intent intent = new Intent(this, Catfish.class);
         startActivity(intent);
     }
 }
